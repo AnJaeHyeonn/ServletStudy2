@@ -19,7 +19,7 @@
 *.tar.gz
 *.rar
 
-# My
+# my
 DBConnector.java
 src/com/ajh/s1/test/*
 
