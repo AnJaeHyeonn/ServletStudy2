@@ -12,7 +12,7 @@ public class DBConnector {
 
 		String user = "user02";
 		String pw = "user02";
-		String url = "jdbc:oracle:thin:@127.0.0.1:1521:xe";
+		String url = "jdbc:oracle:thin:@59.15.163.216:1521:xe";
 		String driver = "oracle.jdbc.driver.OracleDriver";
 		Connection con = null;
 		try {
