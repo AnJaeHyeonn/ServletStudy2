@@ -5,11 +5,14 @@ import java.nio.file.Path;
 import java.util.StringTokenizer;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.ajh.s1.bankbook.BankBookController;
 import com.ajh.s1.member.MemberController;
@@ -40,6 +43,12 @@ public class FrontController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		ServletConfig sc = getServletConfig();
+		HttpSession session = request.getSession();
+		ServletContext context = session.getServletContext();
+		
+		
 		System.out.println("Front Controller 실행");
 
 		String str = request.getRequestURI();
@@ -69,7 +78,12 @@ public class FrontController extends HttpServlet {
 		path = str.substring(startIndex, lastIndex);
 
 		if (path.equals("/member")) {
-			memberController.start(request);
+			try {
+				memberController.start(request, response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} else if (path.equals("/bankbook")) {
 			bankBookController.start(request, response);
 		} else {

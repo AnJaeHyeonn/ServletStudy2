@@ -88,4 +88,35 @@ public class BankBookDAO {
 
 	}
 
+	public int setInsert(BankBookDTO bankBookDTO) {
+		DBConnector dbConnector = new DBConnector();
+
+		Connection con = null;
+		PreparedStatement st = null;
+
+		int result = 0;
+
+		try {
+			con = dbConnector.getConnect();
+
+			String sql = "INSERT INTO BANKBOOK VALUES(BANKBOOK_SEQ.NEXTVAL,?,?,?)";
+
+			st = con.prepareStatement(sql);
+
+			st.setString(1, bankBookDTO.getBookName());
+			st.setDouble(2, bankBookDTO.getBookRate());
+			st.setInt(3, bankBookDTO.getBookSale());
+
+			result = st.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbConnector.disConnect(st, con);
+
+		}
+
+		return result;
+	}
+
 }

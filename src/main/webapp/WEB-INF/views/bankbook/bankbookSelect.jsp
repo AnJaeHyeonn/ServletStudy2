@@ -17,5 +17,6 @@
 
 	<h3>num :  <%=num%></h3>
 	<h3>name : <%=bankBookDTO.getBookName() %></h3>
+	<h3>rate : <%=bankBookDTO.getBookRate() %></h3>
 </body>
 </html>

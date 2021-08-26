@@ -1,11 +1,9 @@
 package com.ajh.s1.bankbook;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -50,9 +48,9 @@ public class BankBookController {
 				System.out.println(bankBookDTO.getBookSale());
 				System.out.println("=================================");
 			}
-			
+
 			request.setAttribute("list", ar);
-			
+
 			RequestDispatcher view = request.getRequestDispatcher("../WEB-INF/views/bankbook/bankbookList.jsp");
 			try {
 				view.forward(request, response);
@@ -63,6 +61,42 @@ public class BankBookController {
 
 		} else if (arr[2].equals("bankbookInsert.do")) {
 			System.out.println("상품등록");
+
+			String method = request.getMethod();
+			System.out.println("Method : " + method);
+
+			if (method.equals("POST")) {
+				String bookName = request.getParameter("bookName");
+				String bookRate = request.getParameter("bookRate");
+				String bookSale = request.getParameter("bookSale");
+
+				BankBookDTO bankBookDTO = new BankBookDTO();
+				bankBookDTO.setBookName(bookName);
+				bankBookDTO.setBookRate(Double.parseDouble(bookRate));
+				bankBookDTO.setBookSale(Integer.parseInt(bookSale));
+
+				int result = bankBookDAO.setInsert(bankBookDTO);
+//				ArrayList<BankBookDTO> ar = bankBookDAO.getList();
+//				request.setAttribute("list", ar);
+				
+				try {
+					response.sendRedirect("./bankbookList.do");
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			} else {
+
+				RequestDispatcher view = request.getRequestDispatcher("../WEB-INF/views/bankbook/bankbookInsert.jsp");
+				try {
+					view.forward(request, response);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
 		} else if (arr[2].equals("bankbookSelect.do")) {
 			System.out.println("상품상세조회");
 			String num = request.getParameter("bookNumber");
@@ -75,7 +109,7 @@ public class BankBookController {
 			System.out.println(bankBookDTO.getBookName());
 			System.out.println(bankBookDTO.getBookRate());
 			System.out.println(bankBookDTO.getBookSale());
-			
+
 			request.setAttribute("dto", bankBookDTO);
 
 			RequestDispatcher view = request.getRequestDispatcher("../WEB-INF/views/bankbook/bankbookSelect.jsp");
