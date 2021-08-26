@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+.tbl {
+	border : blue 2px dotted;
+	border-spacing: 30px;
+	border-collapse: separate;
+}
+
+.tbl_tr {
+	border : red 2px solid;
+	
+}
