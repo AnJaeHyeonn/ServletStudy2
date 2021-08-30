@@ -1,12 +1,21 @@
 @charset "UTF-8";
 
 .tbl {
-	border : blue 2px dotted;
-	border-spacing: 30px;
-	border-collapse: separate;
+	border : red 3px dotted;
+	border-spacing : 0;
+	border-collapse: collapse;
+	width : 70%;
+	margin : 0 auto;
 }
 
 .tbl_tr {
-	border : red 2px solid;
+	border : blue 2px solid;
 	
+}
+
+#title {
+	width : 70%;
+	background-color: yellow;
+	margin : 0 auto;
+	text-align: center;
 }

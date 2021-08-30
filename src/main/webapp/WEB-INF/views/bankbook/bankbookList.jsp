@@ -14,7 +14,8 @@
 <link href = "../css/list.css" rel="stylesheet">
 </head>
 <body>
-	<h1>BankBook List Page BY JSTL</h1>
+	
+	<h1 id="title">BankBook List Page BY JSTL</h1>
 	<table class = "tbl">
 	<tr>
 		<th class = "tbl_tr">일련번호</th> <th class = "tbl_tr">제품명</th> <th class = "tbl_tr">이자율</th>	<th class = "tbl_tr">Status</th>	
